@@ -1,0 +1,24 @@
+{
+  "name": "blocked-reporter",
+  "version": "1.0.0",
+  "description": "Reports blocked stats through a dogstatsd client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "log4js":"0.6.31",
+    "node-dogstatsd": "0.0.6",
+    "blocked": "1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/worximity/blocked-reporter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/worximity/blocked-reporter/issues"
+  },
+  "homepage": "https://github.com/worximity/blocked-reporter#readme"
+}
