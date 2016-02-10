@@ -1,6 +1,6 @@
 {
   "name": "blocked-reporter",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Reports blocked stats through a dogstatsd client",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,12 @@
     "coverage": "./node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- 'test.js'"
   },
   "dependencies": {
-    "log4js":"0.6.31",
     "node-dogstatsd": "0.0.6"
   },
   "devDependencies": {
     "chai": "3.5.0",
     "mocha": "2.4.5",
-    "istanbul": "0.4.1",
-    "mocha-junit-reporter": "1.9.1"
+    "istanbul": "0.4.1"
   },
   "repository": {
     "type": "git",
