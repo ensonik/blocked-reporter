@@ -4,8 +4,11 @@ This module uses the https://www.npmjs.com/package/blocked package to report sta
 
 
         var DD = require("node-dogstatsd").StatsD;
-        ...
-        require("blocked-reporter")({"dogstatsd":DD});
+        var Blocked = require("blocked-reporter");
+        new Blocked({
+            "dogstatsd":new DD()
+        }).start();
+        
         
         
  Other options include:
@@ -19,13 +22,13 @@ This module uses the https://www.npmjs.com/package/blocked package to report sta
    
 For example:
      
-    require("blocked-reporter")(
-        {
-            "dogstatsd":DD,
-            "datadogMetricName":"event-loop-blocked",
-            "histogramInterval":1,
-            "errorThreshold":2000       
-        });
+    var Blocked = require("blocked-reporter");    
+    new Blocked({
+        "dogstatsd":new DD(),
+        "datadogMetricName":"event-loop-blocked",
+        "histogramInterval":1,
+        "errorThreshold":2000       
+    }).start();
     
 # Importing as a dependency
 

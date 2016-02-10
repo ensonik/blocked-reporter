@@ -1,24 +1,40 @@
 "use strict";
 
-var log4js = require('log4js');
-var logger = log4js.getLogger("[blocked]");
+class BlockedReporter {
 
-var blocked = require('blocked');
+    constructor(options) {
+        var config = new Object();
 
-module.exports = function(options) {
-    var dogstatsd = options.dogstatsd;
-    var datadogMetricName = options.datadogMetricName || "event-loop-blocked";
-    var histogramInterval = options.histogramInterval || 1;
-    var errorThreshold = options.errorThresholdMs || 1500;
-    var warnThreshold = options.warnThresholdMs || 750;
-    var debugThreshold = options.debugThresholdMs || 500;
+        config.dogstatsd = options.dogstatsd;
+        config.datadogMetricName = options.datadogMetricName || "event-loop-blocked";
+        config.histogramInterval = options.histogramInterval || 1;
+        config.triggerThreshold = options.triggerThresholdMs || 10;
 
-    logger.debug("Blocked reporter started");
-    var msg = 'Event loop blocked';
-    blocked(function(ms){
-        dogstatsd.histogram(datadogMetricName, ms, histogramInterval, dogstatsd.global_tags);
-        if (ms > errorThreshold) logger.error(msg, { ms: ms });
-        else if (ms > warnThreshold) logger.warn(msg, { ms: ms });
-        else if (ms > debugThreshold) logger.debug('Event loop blocked for %sms', ms | 0);
-    });
+        this.config = config;
+    }
+
+    start() {
+        var msg = 'Event loop blocked';
+        var self = this;
+
+        var blocked = function(fn, ts) {
+            var start = process.hrtime()
+            var interval = 100;
+
+            setInterval(function(){
+                var delta = process.hrtime(start);
+                var nanosec = delta[0] * 1e9 + delta[1];
+                var ms = nanosec / 1e6;
+                var n = ms - interval;
+                if (n > ts) fn(Math.round(n))
+                start = process.hrtime();
+            }, interval).unref();
+        };
+
+        blocked(function(ms){
+            self.config.dogstatsd.histogram(self.config.datadogMetricName, ms, self.config.histogramInterval, self.config.dogstatsd.global_tags);
+        }, this.config.triggerThreshold);
+    }
 };
+
+module.exports = BlockedReporter
