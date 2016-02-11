@@ -15,9 +15,6 @@ This module uses the https://www.npmjs.com/package/blocked package to report sta
  
    * datadogMetricName : defaults to "event-loop-blocked"
    * histogramInterval = defaults to 1
-   * errorThreshold : defaults to 1500 ms
-   * warnThreshold : defaults to 750 ms
-   * debugThreshold : defaults to 500 ms
    
    
 For example:
@@ -26,8 +23,7 @@ For example:
     new Blocked({
         "dogstatsd":new DD(),
         "datadogMetricName":"event-loop-blocked",
-        "histogramInterval":1,
-        "errorThreshold":2000       
+        "histogramInterval":1       
     }).start();
     
 # Importing as a dependency
