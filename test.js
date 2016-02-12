@@ -2,12 +2,12 @@
 
 var expect = require('chai').expect;
 var StatsD = require('node-dogstatsd').StatsD;
-var Blocked = require("./index");
+var BlockedReporter = require("./index");
 
 describe('The reporter', function () {
 
-    it('should load the datadog configuration', function (done) {
-        new Blocked({
+    it('should write a histogram event', function (done) {
+        new BlockedReporter({
             "dogstatsd": new StatsD("localhost", 8125, null, {"global_tags": ["a:b", "c:d"]}),
             "triggerThresholdMs": 1
         }).start();
@@ -19,26 +19,24 @@ describe('The reporter', function () {
             done();
         });
 
-        setTimeout(function () {
-            Array(100).join("a");
-        }, 100);
+        setTimeout(function () { new Array(100).join("a"); }, 100);
     });
 
-    it('should use the proper trigger threshold when not defined', function () {
-        var blocked = new Blocked({});
-        expect(blocked.config.triggerThreshold).to.equal(10);
+    it('should configure the default trigger threshold when not defined in options', function () {
+        var br = new BlockedReporter();
+        expect(br.triggerThreshold).to.equal(10);
     });
 
-    it('should set default values', function () {
-        var blocked = new Blocked({
-                "datadogMetricName": "test",
-                "histogramInterval": 2,
-                "triggerThresholdMs": 222
+    it('should keep values given in options and not set defaults', function () {
+        var br = new BlockedReporter({
+            datadogMetricName: "test",
+            histogramInterval: 2,
+            triggerThresholdMs: 222
         });
 
-        expect(blocked.config.triggerThreshold).to.equal(222);
-        expect(blocked.config.histogramInterval).to.equal(2)
-        expect(blocked.config.datadogMetricName).to.equal("test")
+        expect(br.triggerThreshold).to.equal(222);
+        expect(br.histogramInterval).to.equal(2);
+        expect(br.datadogMetricName).to.equal("test");
     });
 
 });
