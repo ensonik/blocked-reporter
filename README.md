@@ -3,7 +3,7 @@ This module uses the https://www.npmjs.com/package/blocked package to report sta
 # Importing
 
 ```
-"blocked-reporter": "1.2.0"
+"blocked-dogstatsd-reporter": "1.2.2"
 ```
 
 
