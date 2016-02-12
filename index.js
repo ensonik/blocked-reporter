@@ -1,7 +1,7 @@
 "use strict";
 
 const blocked = require('blocked');
-var StatsD = require('node-dogstatsd').StatsD;
+const StatsD = require('node-dogstatsd').StatsD;
 
 class BlockedReporter {
 
@@ -15,9 +15,9 @@ class BlockedReporter {
     }
 
     start() {
-        var self = this;
+        let self = this;
 
-        var cb = function(ms){
+        let cb = function(ms){
             self.dogstatsd.histogram(
                 self.datadogMetricName,
                 ms,

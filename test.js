@@ -1,8 +1,8 @@
 'use strict';
 
-var expect = require('chai').expect;
-var StatsD = require('node-dogstatsd').StatsD;
-var BlockedReporter = require("./index");
+const expect = require('chai').expect;
+const StatsD = require('node-dogstatsd').StatsD;
+const BlockedReporter = require("./index");
 
 describe('The reporter', function () {
 
@@ -23,12 +23,12 @@ describe('The reporter', function () {
     });
 
     it('should configure the default trigger threshold when not defined in options', function () {
-        var br = new BlockedReporter();
+        let br = new BlockedReporter();
         expect(br.triggerThreshold).to.equal(10);
     });
 
     it('should keep values given in options and not set defaults', function () {
-        var br = new BlockedReporter({
+        let br = new BlockedReporter({
             datadogMetricName: "test",
             histogramInterval: 2,
             triggerThresholdMs: 222
