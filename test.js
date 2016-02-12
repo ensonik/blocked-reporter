@@ -12,9 +12,9 @@ describe('The reporter', function () {
             "triggerThresholdMs": 1
         }).start();
 
-        var server = require('dgram').createSocket("udp4");
-        server.bind(8125);
-        server.on("message", function (msg, rinfo) {
+        this.server = require('dgram').createSocket("udp4");
+        this.server.bind(8125);
+        this.server.on("message", function (msg, rinfo) {
             expect(msg.toString()).to.match(/event-loop-blocked:[0-9]\|h\|#a:b,c:d,a:b,c:/g);
             done();
         });

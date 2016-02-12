@@ -15,7 +15,6 @@ class BlockedReporter {
     }
 
     start() {
-        var msg = 'Event loop blocked';
         var self = this;
 
         var cb = function(ms){
