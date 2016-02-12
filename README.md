@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/blocked-dogstatsd-reporter.png)](https://npmjs.org/package/blocked-dogstatsd-reporter)
+
 This module uses the https://www.npmjs.com/package/blocked package to report stats through the node-dogstatsd library.
 
 # Importing
