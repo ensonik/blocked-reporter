@@ -1,6 +1,6 @@
 {
-  "name": "blocked-reporter",
-  "version": "1.2.0",
+  "name": "blocked-dogstatsd-reporter",
+  "version": "1.2.1",
   "description": "Reports blocked stats through a dogstatsd client",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/worximity/blocked-reporter.git"
   },
-  "author": "",
+  "author": "mike.mclean.1@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/worximity/blocked-reporter/issues"

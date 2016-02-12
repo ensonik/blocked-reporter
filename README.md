@@ -1,4 +1,4 @@
-This module uses the https://www.npmjs.com/package/blocked package to report stats through 
+This module uses the https://www.npmjs.com/package/blocked package to report stats through the node-dogstatsd library.
 
 # Importing
 
