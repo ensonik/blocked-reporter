@@ -1,11 +1,11 @@
 {
   "name": "blocked-dogstatsd-reporter",
   "version": "1.2.3",
-  "description": "Reports blocked stats through a dogstatsd client",
+  "description": "Reports Blocked stats as a histogram metric through a node-dogstatsd client",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- 'test.js'"
+    "coverage": "./node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha"
   },
   "dependencies": {
     "node-dogstatsd": "0.0.6",

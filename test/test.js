@@ -2,7 +2,7 @@
 
 const expect = require('chai').expect;
 const StatsD = require('node-dogstatsd').StatsD;
-const BlockedReporter = require("./index");
+const BlockedReporter = require("./../index");
 
 describe('The reporter', function () {
 
