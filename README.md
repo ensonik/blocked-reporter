@@ -41,6 +41,20 @@ Options include:
     
 _Don't forget to call `start`_
 
+### Event
+
+A 'started' event will be emited when blocked-reporter has properly started.
+
+```
+    var BlockedReporter = require("blocked-reporter");  
+          
+    var br = new BlockedReporter();
+    br.on('started', function(data){
+        console.log("Blocked reporter has started");
+    });
+    br.start();
+```
+
 # License
 
 ISC
