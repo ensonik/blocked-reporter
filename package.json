@@ -1,6 +1,6 @@
 {
   "name": "blocked-dogstatsd-reporter",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Reports Blocked stats as a histogram metric through a node-dogstatsd client",
   "main": "index.js",
   "scripts": {

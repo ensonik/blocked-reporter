@@ -2,6 +2,8 @@
 
 const blocked = require('blocked');
 const StatsD = require('node-dogstatsd').StatsD;
+const EventEmitter = require('events').EventEmitter;
+const util = require('util');
 
 class BlockedReporter {
 
@@ -12,6 +14,9 @@ class BlockedReporter {
         this.datadogMetricName = options.datadogMetricName || "event-loop-blocked";
         this.histogramInterval = options.histogramInterval || 1;
         this.triggerThreshold = options.triggerThresholdMs || 10;
+
+        EventEmitter.call(this);
+        util.inherits(BlockedReporter, EventEmitter);
     }
 
     start() {
@@ -27,6 +32,8 @@ class BlockedReporter {
         };
 
         blocked(cb, {threshold:this.triggerThreshold});
+
+        this.emit('started', "Blocked has started");
     }
 
 };

@@ -39,4 +39,13 @@ describe('The reporter', function () {
         expect(br.datadogMetricName).to.equal("test");
     });
 
+    it('should emit a started event', function(done) {
+        let br = new BlockedReporter();
+        br.on('started', function(data) {
+            expect(data).to.equal("Blocked has started");
+            done();
+        });
+        br.start();
+    });
+
 });
